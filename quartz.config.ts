@@ -4,7 +4,7 @@ import * as Plugin from "./quartz/plugins"
 /**
  * Quartz 4 Configuration
  *
- * See https://quartz.jzhao.xyz/configuration for more information.
+ * See https://ginzadaddy-png.github.io/quartz/configuration for more information.
  */
 const config: QuartzConfig = {
   configuration: {
@@ -16,7 +16,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "ginzadaddy-png.github.io/quartz",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
