@@ -23,8 +23,8 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Linux Libertine Display",
-        body: "Georgia",
+        header: "Lora",        // Google Fonts에 있는 세리프
+        body: "Source Serif 4",
         code: "IBM Plex Mono",
       },
       colors: {
