@@ -1,3 +1,35 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+// Wikipedia-style 구분선
+article h2 {
+    border-bottom: 1px solid #a2a9b1;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+  
+  // 본문 너비
+  .center {
+    max-width: 900px;
+  }
+  
+  // 페이지 제목 하단 선
+  .page-header {
+    border-bottom: 1px solid #a2a9b1;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+  
+  // 링크 스타일 (위키피디아 파란 링크)
+  article a {
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+  
+  // 인용 블록 스타일
+  blockquote {
+    border-left: 3px solid #a2a9b1;
+    background: #f8f9fa;
+    padding: 8px 16px;
+    color: #202122;
+  }
