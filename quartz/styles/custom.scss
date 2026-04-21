@@ -33,3 +33,8 @@ article h2 {
     padding: 8px 16px;
     color: #202122;
   }
+
+// Explorer 파일 항목 — 일반 굵기
+.explorer-content ul li > a {
+  font-weight: normal;
+}
