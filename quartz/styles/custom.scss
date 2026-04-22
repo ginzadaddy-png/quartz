@@ -53,15 +53,18 @@ article h2 {
   font-weight: 500;
 }
 
-/* Reader mode — 본문 확장 + 사이드바 floating */
+/* Reader mode — 사이드바 숨김 + 본문 확장 */
 :root[reader-mode="on"] {
-  // 사이드바 컬럼 너비를 0으로 → 본문이 전체 너비 차지
-  // auto는 min-content 기준이므로 1fr 사용
-  & #quartz-body {
-    grid-template-columns: 0 1fr 0;
+  // grid를 단일 컬럼으로 재정의 → 본문이 전체 너비 차지
+  & .page > #quartz-body {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "grid-header"
+      "grid-center"
+      "grid-footer" !important;
   }
 
-  // 사이드바를 fixed로 전환 → 레이아웃 공간 미차지, hover 시 floating 노출
+  // 사이드바: fixed로 floating → grid 공간 미차지, 화면 가장자리에 대기
   & .sidebar {
     position: fixed !important;
     top: 0;
