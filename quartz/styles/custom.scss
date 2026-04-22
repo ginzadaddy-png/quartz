@@ -52,3 +52,50 @@ article h2 {
 .folder-container div > a {
   font-weight: 500;
 }
+
+/* Reader mode — 본문 확장 + 사이드바 floating */
+:root[reader-mode="on"] {
+  // 사이드바 컬럼 너비를 0으로 → 본문이 전체 너비 차지
+  & #quartz-body {
+    grid-template-columns: 0 auto 0;
+  }
+
+  // 사이드바를 fixed로 전환 → 레이아웃 공간 미차지, hover 시 floating 노출
+  & .sidebar {
+    position: fixed !important;
+    top: 0;
+    height: 100vh;
+    width: 320px;
+    overflow-y: auto;
+    background: var(--light);
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    &.left  { left: 0; }
+    &.right { right: 0; }
+
+    // hover 재등장 (reader-no-hover 없을 때만)
+    &:not(.reader-no-hover):hover {
+      opacity: 1;
+    }
+  }
+
+  // mode ON 직후 600ms — pointer-events 차단으로 hover 무력화
+  & .sidebar.reader-no-hover {
+    pointer-events: none !important;
+  }
+}
+
+/* TOC — Explorer와 동일한 비중 */
+.toc {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+.toc:hover {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+button.toc-header h3 {
+  font-size: 1rem;
+}
