@@ -48,6 +48,7 @@ article h2 {
   opacity: 1;
   transition: opacity 0.2s;
 }
-.explorer .folder-title {
+.folder-container div > button span,
+.folder-container div > a {
   font-weight: 500;
 }
