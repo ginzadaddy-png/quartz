@@ -41,7 +41,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Explorer({
       mapFn: (node) => {
         // 폴더명 첫글자 대문자로 변환
-        if (node.file === null) {
+        if (node.isFolder) {
           node.displayName =
             node.displayName.charAt(0).toUpperCase() + node.displayName.slice(1)
         }
@@ -73,7 +73,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.Explorer({
       mapFn: (node) => {
         // 폴더명 첫글자 대문자로 변환
-        if (node.file === null) {
+        if (node.isFolder) {
           node.displayName =
             node.displayName.charAt(0).toUpperCase() + node.displayName.slice(1)
         }
