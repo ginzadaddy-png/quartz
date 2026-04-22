@@ -56,8 +56,9 @@ article h2 {
 /* Reader mode — 본문 확장 + 사이드바 floating */
 :root[reader-mode="on"] {
   // 사이드바 컬럼 너비를 0으로 → 본문이 전체 너비 차지
+  // auto는 min-content 기준이므로 1fr 사용
   & #quartz-body {
-    grid-template-columns: 0 auto 0;
+    grid-template-columns: 0 1fr 0;
   }
 
   // 사이드바를 fixed로 전환 → 레이아웃 공간 미차지, hover 시 floating 노출
