@@ -30,6 +30,8 @@ document.addEventListener("nav", () => {
 
   const handleMobileTap = (e: TouchEvent) => {
     if (!isReaderMode || !isMobile()) return
+    // 사이드바 내부 탭(버튼 클릭 등)은 토글 로직 건너뜀
+    if (leftSidebar && leftSidebar.contains(e.target as Node)) return
     const y = e.touches[0].clientY
     // 화면 상단 80px 탭 시 컨트롤 바 토글
     if (y < 80) {
