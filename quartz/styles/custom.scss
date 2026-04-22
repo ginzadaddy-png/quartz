@@ -34,6 +34,13 @@ article h2 {
     color: #202122;
   }
 
+// 다크모드 블록쿼트 — 텍스트 시인성 개선
+[saved-theme="dark"] blockquote {
+  background: rgba(255, 255, 255, 0.06);
+  border-left-color: #5b9bd5;
+  color: #e8e8e8;
+}
+
 // Explorer 파일 항목 — 일반 굵기
 .explorer-content ul li > a {
   font-weight: normal;
@@ -88,6 +95,47 @@ article h2 {
   // mode ON 직후 600ms — pointer-events 차단으로 hover 무력화
   & .sidebar.reader-no-hover {
     pointer-events: none !important;
+  }
+
+  // 모바일: 데스크탑 fixed 사이드바 방식 대신 상단 바 토글 방식으로 변경
+  @media (max-width: 800px) {
+    // 모바일에선 grid 변경 불필요 (원래 단일 컬럼)
+    & .page > #quartz-body {
+      grid-template-columns: auto !important;
+      grid-template-areas:
+        "grid-sidebar-left"
+        "grid-header"
+        "grid-center"
+        "grid-sidebar-right"
+        "grid-footer" !important;
+    }
+
+    // 우측 사이드바(graph, backlinks)는 완전히 숨김
+    & .sidebar.right {
+      display: none !important;
+    }
+
+    // 좌측 사이드바(상단 컨트롤 바): 숨김 상태로 대기
+    & .sidebar.left {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100% !important;
+      height: auto !important;
+      z-index: 300;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      background: var(--light);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    // JS가 부여하는 클래스로 상단 바 표시
+    & .sidebar.left.reader-mobile-visible {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
   }
 }
 
