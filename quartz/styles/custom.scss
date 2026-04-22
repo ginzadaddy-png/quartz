@@ -38,3 +38,16 @@ article h2 {
 .explorer-content ul li > a {
   font-weight: normal;
 }
+
+/* Explorer 비중 축소 */
+.explorer {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+.explorer:hover {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+.explorer .folder-title {
+  font-weight: 500;
+}
