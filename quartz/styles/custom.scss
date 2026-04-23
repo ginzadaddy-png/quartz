@@ -19,6 +19,13 @@ article h2 {
     padding-bottom: 8px;
     margin-bottom: 16px;
   }
+
+// index 페이지에서는 page-header 구분선 숨김
+body[data-slug="index"] .page-header {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
   
   // 링크 스타일 (위키피디아 파란 링크)
   article a {
