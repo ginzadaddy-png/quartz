@@ -46,8 +46,15 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.Explorer({
       mapFn: (node) => {
-        // 폴더명 첫글자 대문자로 변환
-        if (node.isFolder) {
+        const folderNames: Record<string, string> = {
+          comparisons: "비교 분석",
+          concepts: "개념",
+          entities: "개체",
+          sources: "소스",
+        }
+        if (node.isFolder && folderNames[node.displayName.toLowerCase()]) {
+          node.displayName = folderNames[node.displayName.toLowerCase()]
+        } else if (node.isFolder) {
           node.displayName =
             node.displayName.charAt(0).toUpperCase() + node.displayName.slice(1)
         }
@@ -78,8 +85,15 @@ export const defaultListPageLayout: PageLayout = {
     }),
     Component.Explorer({
       mapFn: (node) => {
-        // 폴더명 첫글자 대문자로 변환
-        if (node.isFolder) {
+        const folderNames: Record<string, string> = {
+          comparisons: "비교 분석",
+          concepts: "개념",
+          entities: "개체",
+          sources: "소스",
+        }
+        if (node.isFolder && folderNames[node.displayName.toLowerCase()]) {
+          node.displayName = folderNames[node.displayName.toLowerCase()]
+        } else if (node.isFolder) {
           node.displayName =
             node.displayName.charAt(0).toUpperCase() + node.displayName.slice(1)
         }
