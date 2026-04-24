@@ -201,3 +201,14 @@ body[data-slug="index"] .page-header {
 button.toc-header h3 {
   font-size: 1rem;
 }
+
+/* h3 — 볼드 + 사이즈 강조 (링크 색과 혼동 없도록 헤더는 --dark 검정 계열 사용) */
+article h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* 다크모드: 사이드바 페이지 타이틀 가시성 확보 */
+[saved-theme="dark"] .page-title a {
+  color: #e0e0e0;
+}
