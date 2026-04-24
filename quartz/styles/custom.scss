@@ -34,6 +34,7 @@ body[data-slug="index"] .page-header {
   // 링크 스타일 (위키피디아 파란 링크)
   article a {
     text-decoration: none;
+    background-color: transparent !important;
     &:hover { text-decoration: underline; }
   }
   
