@@ -1,5 +1,12 @@
 @use "./base.scss";
 
+// Pretendard — CDN
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+:root {
+  --bodyFont: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 // put your custom CSS here!
 // Wikipedia-style 구분선
 article h2 {
