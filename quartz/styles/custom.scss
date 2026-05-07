@@ -358,6 +358,17 @@ article h3 {
   }
 }
 
+/* Popover — 보이지 않는 1rem 패딩 영역이 클릭을 가로채지 않도록
+ * 외곽 .popover는 pointer-events: none → 투명 버퍼 영역은 클릭 통과
+ * 안쪽 .popover-inner만 pointer-events: auto → 미리보기 콘텐츠는 스크롤 가능 유지 */
+.popover {
+  pointer-events: none;
+}
+
+.popover > .popover-inner {
+  pointer-events: auto;
+}
+
 /* 좌측 사이드바 Graph — 폭 안정화 */
 .left .graph {
   margin-top: 0.6rem;
