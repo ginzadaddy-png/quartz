@@ -31,6 +31,12 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.TagList(),
   ],
+  afterBody: [
+    Component.ConditionalRender({
+      component: Component.Backlinks(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
+  ],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
@@ -44,28 +50,10 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer({
-      mapFn: (node) => {
-        const folderNames: Record<string, string> = {
-          comparisons: "비교 분석",
-          concepts: "개념",
-          entities: "개체",
-          sources: "소스",
-        }
-        if (node.isFolder && folderNames[node.displayName.toLowerCase()]) {
-          node.displayName = folderNames[node.displayName.toLowerCase()]
-        } else if (node.isFolder) {
-          node.displayName =
-            node.displayName.charAt(0).toUpperCase() + node.displayName.slice(1)
-        }
-      },
-    }),
+    Component.WikiNav(),
+    Component.DesktopOnly(Component.Graph()),
   ],
-  right: [
-    Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
-  ],
+  right: [],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
@@ -83,22 +71,8 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer({
-      mapFn: (node) => {
-        const folderNames: Record<string, string> = {
-          comparisons: "비교 분석",
-          concepts: "개념",
-          entities: "개체",
-          sources: "소스",
-        }
-        if (node.isFolder && folderNames[node.displayName.toLowerCase()]) {
-          node.displayName = folderNames[node.displayName.toLowerCase()]
-        } else if (node.isFolder) {
-          node.displayName =
-            node.displayName.charAt(0).toUpperCase() + node.displayName.slice(1)
-        }
-      },
-    }),
+    Component.WikiNav(),
+    Component.DesktopOnly(Component.Graph()),
   ],
   right: [],
 }

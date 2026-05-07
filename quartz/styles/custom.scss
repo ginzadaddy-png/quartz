@@ -2,6 +2,9 @@
 
 :root {
   --bodyFont: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  // 헤더는 세리프 — Lora 미로드 시 Georgia·Times로 폴백 (mockup 동일)
+  --headerFont: 'Lora', Georgia, 'Times New Roman', 'Nanum Myeongjo', serif;
+  --titleFont: 'Lora', Georgia, 'Times New Roman', 'Nanum Myeongjo', serif;
 }
 
 // put your custom CSS here!
@@ -243,6 +246,7 @@ article h3 {
   content: none !important;
 }
 
+// !important — article a { background-color: transparent !important } 를 덮어써야 함
 .pill-grid > ul > li > a {
   display: inline-block;
   width: 240px;
@@ -250,7 +254,7 @@ article h3 {
   padding: 7px 14px;
   border: 1px solid #cdd9ec;
   border-radius: 999px;
-  background: #f0f4fc;
+  background: #f0f4fc !important;
   color: #3b6fd4;
   text-align: center;
   white-space: nowrap;
@@ -263,19 +267,19 @@ article h3 {
 }
 
 .pill-grid > ul > li > a:hover {
-  background: #e0eafa;
+  background: #e0eafa !important;
   border-color: #b3c5e6;
   text-decoration: none !important;
 }
 
 [saved-theme="dark"] .pill-grid > ul > li > a {
-  background: rgba(120, 160, 220, 0.12);
+  background: rgba(120, 160, 220, 0.12) !important;
   border-color: rgba(120, 160, 220, 0.3);
   color: #88b3e8;
 }
 
 [saved-theme="dark"] .pill-grid > ul > li > a:hover {
-  background: rgba(120, 160, 220, 0.22);
+  background: rgba(120, 160, 220, 0.22) !important;
   border-color: rgba(120, 160, 220, 0.5);
 }
 
@@ -285,4 +289,60 @@ article h3 {
     width: 100%;
     max-width: 320px;
   }
+}
+
+/* Backlinks를 afterBody에 배치할 때 — 본문 하단 섹션 스타일 */
+.backlinks {
+  margin-top: 2.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--lightgray);
+
+  & > h3 {
+    font-size: 0.95rem;
+    color: var(--darkgray);
+    margin: 0 0 0.6rem 0;
+    font-weight: 700;
+  }
+
+  & > ul.overflow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: none;
+
+    & > li {
+      margin: 0;
+      padding: 0;
+
+      & > a {
+        font-size: 0.88rem;
+        color: var(--secondary);
+      }
+    }
+  }
+}
+
+/* 좌측 사이드바 Graph — 폭 안정화 */
+.left .graph {
+  margin-top: 0.6rem;
+
+  & > h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--darkgray);
+    margin: 0 0 0.4rem 0;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #c8ccd0;
+  }
+
+  & > .graph-outer {
+    height: 220px;
+  }
+}
+
+[saved-theme="dark"] .left .graph > h3 {
+  border-bottom-color: rgba(255, 255, 255, 0.18);
 }
