@@ -23,8 +23,8 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Lora",        // Google Fonts에 있는 세리프
-        body: "Noto Sans KR",  // 한글 획이 두껍고 안정적
+        header: "Noto Sans KR", // 본문과 헤더 모두 Noto Sans KR로 통일
+        body: "Noto Sans KR",
         code: "IBM Plex Mono",
       },
       colors: {

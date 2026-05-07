@@ -1,11 +1,10 @@
 @use "./base.scss";
 
 :root {
-  // 본문 — Noto Sans KR (Quartz가 quartz.config.ts에 따라 Google Fonts에서 자동 로드)
+  // 본문·헤더 모두 Noto Sans KR로 통일 (Quartz가 Google Fonts에서 자동 로드)
   --bodyFont: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-  // 헤더는 세리프 — Lora 미로드 시 Georgia·Times로 폴백 (mockup 동일)
-  --headerFont: 'Lora', Georgia, 'Times New Roman', 'Nanum Myeongjo', serif;
-  --titleFont: 'Lora', Georgia, 'Times New Roman', 'Nanum Myeongjo', serif;
+  --headerFont: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --titleFont: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }
 
 // put your custom CSS here!
