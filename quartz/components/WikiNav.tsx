@@ -111,7 +111,7 @@ WikiNav.css = `
   padding: 6px 8px;
   border-radius: 4px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #1f4ba8;
   text-decoration: none !important;
   background: transparent !important;
@@ -133,7 +133,7 @@ WikiNav.css = `
 
 .wiki-nav-count {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--gray);
   font-variant-numeric: tabular-nums;
 }
