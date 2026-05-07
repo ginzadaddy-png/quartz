@@ -24,7 +24,7 @@ const config: QuartzConfig = {
       cdnCaching: true,
       typography: {
         header: "Lora",        // Google Fonts에 있는 세리프
-        body: "Source Serif 4",
+        body: "Noto Sans KR",  // 한글 획이 두껍고 안정적
         code: "IBM Plex Mono",
       },
       colors: {

@@ -112,10 +112,14 @@ WikiNav.css = `
   border-radius: 4px;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--secondary);
+  color: #1f4ba8;
   text-decoration: none !important;
   background: transparent !important;
   transition: background 0.12s;
+}
+
+[saved-theme="dark"] .wiki-nav li > a {
+  color: #88b3e8;
 }
 
 .wiki-nav li > a:hover {

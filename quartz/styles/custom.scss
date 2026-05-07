@@ -1,7 +1,8 @@
 @use "./base.scss";
 
 :root {
-  --bodyFont: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  // 본문 — Noto Sans KR (Quartz가 quartz.config.ts에 따라 Google Fonts에서 자동 로드)
+  --bodyFont: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   // 헤더는 세리프 — Lora 미로드 시 Georgia·Times로 폴백 (mockup 동일)
   --headerFont: 'Lora', Georgia, 'Times New Roman', 'Nanum Myeongjo', serif;
   --titleFont: 'Lora', Georgia, 'Times New Roman', 'Nanum Myeongjo', serif;
@@ -263,10 +264,10 @@ article h3 {
   width: 240px;
   box-sizing: border-box;
   padding: 9px 14px;
-  border: 1px solid #cdd9ec;
+  border: 1px solid #b8c8e8;
   border-radius: 999px;
   background: #f0f4fc !important;
-  color: #2d5cbf;
+  color: #1f4ba8;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
