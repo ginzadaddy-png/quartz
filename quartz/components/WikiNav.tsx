@@ -69,22 +69,22 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
 
 WikiNav.css = `
 .wiki-nav {
-  font-size: 0.9rem;
-  margin-top: 0.6rem;
+  font-size: 1rem;
+  margin-top: 0.8rem;
 }
 
 .wiki-nav-section {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
 }
 
 .wiki-nav-heading {
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--darkgray);
   text-transform: none;
   letter-spacing: 0.02em;
-  margin: 0 0 0.4rem 0;
-  padding-bottom: 0.25rem;
+  margin: 0 0 0.5rem 0;
+  padding-bottom: 0.3rem;
   border-bottom: 1px solid #c8ccd0;
 }
 
@@ -108,8 +108,10 @@ WikiNav.css = `
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 4px 6px;
+  padding: 6px 8px;
   border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--secondary);
   text-decoration: none !important;
   background: transparent !important;
@@ -126,7 +128,8 @@ WikiNav.css = `
 }
 
 .wiki-nav-count {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--gray);
   font-variant-numeric: tabular-nums;
 }
