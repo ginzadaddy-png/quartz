@@ -69,7 +69,7 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
 
 WikiNav.css = `
 .wiki-nav {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-top: 0.8rem;
 }
 
@@ -78,7 +78,7 @@ WikiNav.css = `
 }
 
 .wiki-nav-heading {
-  font-size: 0.95rem;
+  font-size: 0.86rem;
   font-weight: 700;
   color: var(--darkgray);
   text-transform: none;
@@ -110,7 +110,7 @@ WikiNav.css = `
   gap: 8px;
   padding: 6px 8px;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #1f4ba8;
   text-decoration: none !important;
@@ -132,7 +132,7 @@ WikiNav.css = `
 }
 
 .wiki-nav-count {
-  font-size: 0.85rem;
+  font-size: 0.77rem;
   font-weight: 500;
   color: var(--gray);
   font-variant-numeric: tabular-nums;
