@@ -358,6 +358,57 @@ article h3 {
   }
 }
 
+/* 모바일 (≤800px) — WikiNav를 컴팩트 가로 pill 레이아웃으로
+ * 데스크탑처럼 세로로 길게 펼치면 상단 영역이 비대해져 본문 도달이 늦어짐 */
+@media all and (max-width: 800px) {
+  .wiki-nav {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  .wiki-nav-section {
+    margin-bottom: 0.5rem;
+  }
+
+  .wiki-nav-heading {
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .wiki-nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .wiki-nav li > a {
+    padding: 5px 12px !important;
+    border-radius: 999px;
+    background: var(--lightgray) !important;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+  }
+
+  .wiki-nav li > a:hover {
+    background: var(--gray) !important;
+    color: var(--light) !important;
+  }
+
+  .wiki-nav-count {
+    font-size: 0.72rem;
+    margin-left: 4px;
+    opacity: 0.7;
+  }
+}
+
 /* Popover — 보이지 않는 1rem 패딩 영역이 클릭을 가로채지 않도록
  * 외곽 .popover는 pointer-events: none → 투명 버퍼 영역은 클릭 통과
  * 안쪽 .popover-inner만 pointer-events: auto → 미리보기 콘텐츠는 스크롤 가능 유지 */
@@ -367,6 +418,15 @@ article h3 {
 
 .popover > .popover-inner {
   pointer-events: auto;
+}
+
+/* 원래는 .popover:hover로 유지되던 동작이 pointer-events: none 때문에 안 먹힘.
+ * .popover-inner:hover로 부모의 visibility를 keep — 사용자가 미리보기 위로 마우스
+ * 옮기면 popover 유지되고 스크롤·읽기 가능. */
+.popover:has(> .popover-inner:hover) {
+  animation: dropin 0.3s ease;
+  animation-fill-mode: forwards;
+  animation-delay: 0.2s;
 }
 
 /* 좌측 사이드바 Graph — 폭 안정화 */
