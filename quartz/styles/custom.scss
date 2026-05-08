@@ -358,9 +358,35 @@ article h3 {
   }
 }
 
-/* 모바일 (≤800px) — WikiNav를 컴팩트 가로 pill 레이아웃으로
- * 데스크탑처럼 세로로 길게 펼치면 상단 영역이 비대해져 본문 도달이 늦어짐 */
+/* 모바일 (≤800px) — 사이드바 자체를 세로 정렬로 되돌림
+ * Quartz 기본은 flex-direction: row + align-items: center로 좌우 분할
+ * 우리는 PageTitle / Search / WikiNav 모두 한 행씩 풀폭으로 쌓는 형태가 필요 */
 @media all and (max-width: 800px) {
+  .sidebar.left {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100%;
+    padding: 1rem 1rem 0.5rem 1rem !important;
+    gap: 0.6rem !important;
+  }
+
+  .sidebar.left > * {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* PageTitle 한 줄 표시 */
+  .sidebar.left .page-title {
+    text-align: left;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  /* Search/Darkmode/Reader 행 */
+  .sidebar.left > div:has(.search) {
+    width: 100% !important;
+  }
+
   .wiki-nav {
     margin-top: 0.4rem;
     font-size: 0.85rem;
