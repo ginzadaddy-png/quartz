@@ -283,7 +283,9 @@ article h3 {
   font-size: 0.86rem;
   font-weight: 600;
   line-height: 1.3;
-  z-index: 1;
+  /* z-index 명시 안 함 — 기본 상태에서 stacking context 생성 안 해서
+   * 검색 패널(z-index: 999)이 자연스럽게 위로 올라옴.
+   * hover 시에만 z-index: 10으로 떠올라 옆 버튼 침범. */
   transition: width 0.15s ease, background 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
 
@@ -437,8 +439,10 @@ article h3 {
 
 /* 검색 패널 — pill 버튼 위로 항상 올라오도록 z-index 강제
  * Quartz 기본은 999인데 pill의 stacking context와 충돌해서 가려지는 케이스가 발생 */
-.search > .search-container {
-  z-index: 9999 !important;
+.search > .search-container,
+.search-container {
+  z-index: 99999 !important;
+  contain: none !important; /* contain: layout이 stacking context 격리 유발 가능성 */
 }
 
 /* Popover — 보이지 않는 1rem 패딩 영역이 클릭을 가로채지 않도록
