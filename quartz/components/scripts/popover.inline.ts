@@ -123,14 +123,59 @@ function clearActivePopover() {
   allPopoverElements.forEach((popoverElement) => popoverElement.classList.remove("active-popover"))
 }
 
+// link mouseleave 후 즉시 닫지 않고 짧게 유지 — 사용자가 popover 본체로
+// 마우스 이동해 스크롤·읽기 할 수 있도록. popover-inner 위로 들어오거나
+// 다시 link로 돌아오면 timeout 취소.
+let popoverCloseTimeout: number | null = null
+const POPOVER_CLOSE_DELAY_MS = 400
+
+function cancelPopoverClose() {
+  if (popoverCloseTimeout !== null) {
+    clearTimeout(popoverCloseTimeout)
+    popoverCloseTimeout = null
+  }
+}
+
+function schedulePopoverClose() {
+  cancelPopoverClose()
+  popoverCloseTimeout = window.setTimeout(() => {
+    clearActivePopover()
+    popoverCloseTimeout = null
+  }, POPOVER_CLOSE_DELAY_MS)
+}
+
+function handleDocMouseOver(e: MouseEvent) {
+  const t = e.target as HTMLElement | null
+  if (t && t.closest(".popover-inner")) cancelPopoverClose()
+}
+
+function handleDocMouseOut(e: MouseEvent) {
+  const t = e.target as HTMLElement | null
+  if (!t || !t.closest(".popover-inner")) return
+  const related = (e as MouseEvent).relatedTarget as HTMLElement | null
+  if (related && related.closest(".popover-inner")) return
+  schedulePopoverClose()
+}
+
 document.addEventListener("nav", () => {
   const links = [...document.querySelectorAll("a.internal")] as HTMLAnchorElement[]
   for (const link of links) {
     link.addEventListener("mouseenter", mouseEnterHandler)
-    link.addEventListener("mouseleave", clearActivePopover)
+    link.addEventListener("mouseenter", cancelPopoverClose)
+    link.addEventListener("mouseleave", schedulePopoverClose)
     window.addCleanup(() => {
       link.removeEventListener("mouseenter", mouseEnterHandler)
-      link.removeEventListener("mouseleave", clearActivePopover)
+      link.removeEventListener("mouseenter", cancelPopoverClose)
+      link.removeEventListener("mouseleave", schedulePopoverClose)
     })
   }
+
+  // popover-inner는 첫 hover 시점에 동적 생성되는 경우가 있어
+  // document 레벨에서 위임으로 mouseover/mouseout을 잡는다
+  document.addEventListener("mouseover", handleDocMouseOver)
+  document.addEventListener("mouseout", handleDocMouseOut)
+  window.addCleanup(() => {
+    document.removeEventListener("mouseover", handleDocMouseOver)
+    document.removeEventListener("mouseout", handleDocMouseOut)
+  })
 })
