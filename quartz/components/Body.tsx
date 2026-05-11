@@ -10,4 +10,6 @@ const Body: QuartzComponent = ({ children }: QuartzComponentProps) => {
 }
 
 Body.afterDOMLoaded = clipboardScript + pillGridScript
-Body.
+Body.css = clipboardStyle
+
+export default (() => Body) satisfies QuartzComponentConstructor
