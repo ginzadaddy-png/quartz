@@ -2,6 +2,7 @@
 // 두 경우에 hover 펼침:
 //  1) ` — ` 구분자가 있는 경우 → has-detail, 짧은 라벨 + 전체 detail
 //  2) 라벨 자체가 max-width 넘어 ellipsis 잘림 → has-ellipsis, 전체 텍스트 펼침
+// 두 케이스 모두 Quartz의 link popover(미리보기)는 그대로 활성화 — hover 시 layer + popover 함께 표시.
 function setupPillGrid() {
   const pills = document.querySelectorAll<HTMLAnchorElement>(
     ".pill-grid > ul > li > a",
@@ -24,7 +25,6 @@ function setupPillGrid() {
       detailSpan.textContent = text
       a.appendChild(detailSpan)
       a.classList.add("has-detail")
-      a.dataset.noPopover = "true"
       return
     }
 
@@ -42,7 +42,6 @@ function setupPillGrid() {
       a.appendChild(labelSpan)
       a.appendChild(detailSpan)
       a.classList.add("has-ellipsis")
-      a.dataset.noPopover = "true"
     }
     // 폰트 로드 후 측정 (Noto Sans KR이 비동기 로드라 첫 측정이 부정확할 수 있음)
     if (document.fonts && document.fonts.ready) {
