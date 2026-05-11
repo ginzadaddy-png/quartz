@@ -309,8 +309,10 @@ article h3 {
 .pill-grid > ul > li > a.has-ellipsis:hover .pill-detail {
   display: inline-block;
   position: absolute;
-  top: -1px;
-  left: -1px;
+  // a의 left/top과 정확히 일치 — border가 같은 line에서 시작해 layer 내부
+  // 텍스트 위치가 .pill-label과 어긋나지 않음 (-1px 보정 시 1px shift 발생)
+  top: 0;
+  left: 0;
   width: max-content;
   max-width: 520px;
   box-sizing: border-box;
