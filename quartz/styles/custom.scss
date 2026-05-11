@@ -233,8 +233,7 @@ article h3 {
 }
 
 /* Pill 버튼 그리드 — index.md 카탈로그
- * 기본은 짧은 라벨만 가변 너비로 표시. hover 시 detail layer가
- * a 위로 펼쳐져 옆 버튼 자리를 침범. (pill-grid.inline.ts가 span 분리) */
+ * 가변 너비. max-width 초과 시 ellipsis. hover 시 단순 하이라이트만. */
 .pill-grid {
   margin: 0.6rem 0 1.4rem;
 }
@@ -261,8 +260,7 @@ article h3 {
 }
 
 // 기본 pill — 텍스트에 따라 가변 너비, 상한은 max-width 280px
-// a 자체는 overflow: visible — hover 시 overflow 변화로 baseline이 바뀌는 들썩임 방지
-// ellipsis 처리는 자식 .pill-label에서 담당
+// 텍스트 잘림은 overflow: hidden + text-overflow: ellipsis (단순 하이라이트만, hover 시 펼침 없음)
 // !important — article a { background-color: transparent !important } 를 덮어써야 함
 .pill-grid > ul > li > a {
   display: inline-block;
@@ -275,6 +273,8 @@ article h3 {
   color: #1f4ba8;
   text-align: center;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-decoration: none !important;
   font-size: 0.86rem;
   font-weight: 600;
@@ -290,45 +290,6 @@ article h3 {
   text-decoration: none !important;
 }
 
-// 라벨 — pill의 가시 영역. ellipsis 잘림은 여기서 처리
-.pill-grid > ul > li > a .pill-label {
-  display: inline-block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: middle;
-}
-
-// detail layer — 기본은 숨김
-.pill-grid > ul > li > a .pill-detail {
-  display: none;
-}
-
-.pill-grid > ul > li > a.has-detail:hover .pill-detail {
-  display: inline-block;
-  position: absolute;
-  // a의 left/top과 정확히 일치 — border가 같은 line에서 시작해 layer 내부
-  // 텍스트 위치가 .pill-label과 어긋나지 않음 (-1px 보정 시 1px shift 발생)
-  top: 0;
-  left: 0;
-  width: max-content;
-  max-width: 520px;
-  box-sizing: border-box;
-  padding: 9px 14px;
-  background: #e0eafa !important;
-  border: 1px solid #98aede;
-  border-radius: 999px;
-  color: inherit;
-  font: inherit;
-  font-weight: 600;
-  line-height: 1.3;
-  text-align: center;
-  white-space: nowrap;
-  box-shadow: 0 2px 10px rgba(31, 75, 168, 0.12);
-  z-index: 11;
-}
-
 [saved-theme="dark"] .pill-grid > ul > li > a {
   background: rgba(120, 160, 220, 0.12) !important;
   border-color: rgba(120, 160, 220, 0.3);
@@ -341,20 +302,10 @@ article h3 {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-[saved-theme="dark"] .pill-grid > ul > li > a.has-detail:hover .pill-detail {
-  background: rgba(120, 160, 220, 0.22) !important;
-  border-color: rgba(120, 160, 220, 0.5);
-  color: #88b3e8;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-
-/* 모바일: 버튼이 화면 폭을 넘지 않도록 + detail layer 비활성화 */
+/* 모바일: 버튼이 화면 폭을 넘지 않도록 */
 @media (max-width: 600px) {
   .pill-grid > ul > li > a {
     max-width: 100%;
-  }
-  .pill-grid > ul > li > a.has-detail:hover .pill-detail {
-    display: none;
   }
 }
 
