@@ -279,8 +279,7 @@ article h3 {
   font-size: 0.86rem;
   font-weight: 600;
   line-height: 1.3;
-  position: relative; // detail layer의 absolute 기준
-  z-index: 1;
+  position: relative; // detail layer의 absolute 기준 (z-index 명시 X → stacking context 안 만듦)
   transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
 
@@ -303,7 +302,7 @@ article h3 {
 .pill-grid > ul > li > a.has-ellipsis:hover {
   overflow: visible;
   text-overflow: clip;
-  z-index: 10;
+  // z-index 명시 X — stacking context 격리 방지 (검색 모달이 위로 정상 표시되도록)
 }
 
 .pill-grid > ul > li > a.has-detail:hover .pill-detail,
@@ -493,10 +492,4 @@ article h3 {
 /* 원래는 .popover:hover로 유지되던 동작이 pointer-events: none 때문에 안 먹힘.
  * .popover-inner:hover로 부모의 visibility를 keep — 사용자가 미리보기 위로 마우스
  * 옮기면 popover 유지되고 스크롤·읽기 가능. */
-.popover:has(> .popover-inner:hover) {
-  animation: dropin 0.3s ease;
-  animation-fill-mode: forwards;
-  animation-delay: 0.2s;
-}
-
-/* 좌측 사이드바 Graph �
+.popover:has(> .popover-inner:hove
