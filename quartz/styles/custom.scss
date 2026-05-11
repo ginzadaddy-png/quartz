@@ -253,10 +253,6 @@ article h3 {
   padding: 0;
   list-style: none;
   min-height: 40px; // pill 자연 높이와 일치
-  // 자식 a의 hover state 변화(.pill-detail display 전환·box-shadow 등)가
-  // 부모/형제 layout으로 전파되지 않도록 격리 — 호버 시 행 들썩임 방지
-  // (paint/stacking context는 만들지 않으므로 검색 모달 z-index와 안전)
-  contain: layout;
 }
 
 .pill-grid > ul > li::before,
@@ -265,6 +261,8 @@ article h3 {
 }
 
 // 기본 pill — 텍스트에 따라 가변 너비, 상한은 max-width 280px
+// a 자체는 overflow: visible — hover 시 overflow 변화로 baseline이 바뀌는 들썩임 방지
+// ellipsis 처리는 자식 .pill-label에서 담당
 // !important — article a { background-color: transparent !important } 를 덮어써야 함
 .pill-grid > ul > li > a {
   display: inline-block;
@@ -277,8 +275,6 @@ article h3 {
   color: #1f4ba8;
   text-align: center;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   text-decoration: none !important;
   font-size: 0.86rem;
   font-weight: 600;
@@ -294,19 +290,19 @@ article h3 {
   text-decoration: none !important;
 }
 
+// 라벨 — pill의 가시 영역. ellipsis 잘림은 여기서 처리
+.pill-grid > ul > li > a .pill-label {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
 // detail layer — 기본은 숨김
 .pill-grid > ul > li > a .pill-detail {
   display: none;
-}
-
-// has-detail 또는 has-ellipsis면서 hover 시: detail layer가 a 위로 펼쳐짐
-// (옆 버튼은 자리 유지, 침범 방식)
-// overflow: visible 로 a의 영역 밖까지 layer가 보이도록 해제
-.pill-grid > ul > li > a.has-detail:hover,
-.pill-grid > ul > li > a.has-ellipsis:hover {
-  overflow: visible;
-  text-overflow: clip;
-  // z-index 명시 X — stacking context 격리 방지 (검색 모달이 위로 정상 표시되도록)
 }
 
 .pill-grid > ul > li > a.has-detail:hover .pill-detail,
