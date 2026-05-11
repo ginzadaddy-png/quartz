@@ -25,6 +25,8 @@ function setupPillGrid() {
     a.appendChild(detailSpan)
 
     a.classList.add("has-detail")
+    // Quartz의 link popover(z-index 999)가 detail layer를 가리지 않도록 비활성화
+    a.dataset.noPopover = "true"
   })
 }
 
