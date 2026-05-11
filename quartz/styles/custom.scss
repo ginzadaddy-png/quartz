@@ -253,6 +253,10 @@ article h3 {
   padding: 0;
   list-style: none;
   min-height: 40px; // pill 자연 높이와 일치
+  // 자식 a의 hover state 변화(.pill-detail display 전환·box-shadow 등)가
+  // 부모/형제 layout으로 전파되지 않도록 격리 — 호버 시 행 들썩임 방지
+  // (paint/stacking context는 만들지 않으므로 검색 모달 z-index와 안전)
+  contain: layout;
 }
 
 .pill-grid > ul > li::before,
