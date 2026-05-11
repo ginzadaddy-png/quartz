@@ -492,4 +492,30 @@ article h3 {
 /* 원래는 .popover:hover로 유지되던 동작이 pointer-events: none 때문에 안 먹힘.
  * .popover-inner:hover로 부모의 visibility를 keep — 사용자가 미리보기 위로 마우스
  * 옮기면 popover 유지되고 스크롤·읽기 가능. */
-.popover:has(> .popover-inner:hove
+.popover:has(> .popover-inner:hover) {
+  animation: dropin 0.3s ease;
+  animation-fill-mode: forwards;
+  animation-delay: 0.2s;
+}
+
+/* 좌측 사이드바 Graph — 폭 안정화 */
+.left .graph {
+  margin-top: 0.6rem;
+
+  & > h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--darkgray);
+    margin: 0 0 0.4rem 0;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #c8ccd0;
+  }
+
+  & > .graph-outer {
+    height: 220px;
+  }
+}
+
+[saved-theme="dark"] .left .graph > h3 {
+  border-bottom-color: rgba(255, 255, 255, 0.18);
+}
