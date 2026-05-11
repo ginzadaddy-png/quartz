@@ -233,7 +233,8 @@ article h3 {
 }
 
 /* Pill 버튼 그리드 — index.md 카탈로그
- * 텍스트 길이에 따라 가변 너비. max-width로 상한만 지정. */
+ * 기본은 짧은 라벨만 가변 너비로 표시. hover 시 detail layer가
+ * a 위로 펼쳐져 옆 버튼 자리를 침범. (pill-grid.inline.ts가 span 분리) */
 .pill-grid {
   margin: 0.6rem 0 1.4rem;
 }
@@ -259,7 +260,7 @@ article h3 {
   content: none !important;
 }
 
-// 텍스트 길이에 따른 가변 너비, 상한은 max-width
+// 기본 pill — 텍스트에 따라 가변 너비, 상한은 max-width 280px
 // !important — article a { background-color: transparent !important } 를 덮어써야 함
 .pill-grid > ul > li > a {
   display: inline-block;
@@ -278,6 +279,8 @@ article h3 {
   font-size: 0.86rem;
   font-weight: 600;
   line-height: 1.3;
+  position: relative; // detail layer의 absolute 기준
+  z-index: 1;
   transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
 
@@ -288,8 +291,37 @@ article h3 {
   text-decoration: none !important;
 }
 
-[saved-theme="dark"] .pill-grid > ul > li > a:hover {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+// detail layer — 기본은 숨김
+.pill-grid > ul > li > a .pill-detail {
+  display: none;
+}
+
+// has-detail이면서 hover 시: detail layer가 a 위로 펼쳐짐
+// (옆 버튼은 자리 유지, 침범 방식)
+.pill-grid > ul > li > a.has-detail:hover {
+  z-index: 10;
+}
+
+.pill-grid > ul > li > a.has-detail:hover .pill-detail {
+  display: inline-block;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: max-content;
+  max-width: 520px;
+  box-sizing: border-box;
+  padding: 9px 14px;
+  background: #e0eafa !important;
+  border: 1px solid #98aede;
+  border-radius: 999px;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(31, 75, 168, 0.12);
+  z-index: 11;
 }
 
 [saved-theme="dark"] .pill-grid > ul > li > a {
@@ -301,12 +333,23 @@ article h3 {
 [saved-theme="dark"] .pill-grid > ul > li > a:hover {
   background: rgba(120, 160, 220, 0.22) !important;
   border-color: rgba(120, 160, 220, 0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* 모바일: 버튼이 화면 폭을 넘지 않도록 */
+[saved-theme="dark"] .pill-grid > ul > li > a.has-detail:hover .pill-detail {
+  background: rgba(120, 160, 220, 0.22) !important;
+  border-color: rgba(120, 160, 220, 0.5);
+  color: #88b3e8;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* 모바일: 버튼이 화면 폭을 넘지 않도록 + detail layer 비활성화 */
 @media (max-width: 600px) {
   .pill-grid > ul > li > a {
     max-width: 100%;
+  }
+  .pill-grid > ul > li > a.has-detail:hover .pill-detail {
+    display: none;
   }
 }
 
