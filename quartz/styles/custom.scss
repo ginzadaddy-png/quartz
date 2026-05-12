@@ -233,8 +233,9 @@ article h3 {
 }
 
 /* Pill 버튼 그리드 — index.md 카탈로그
- * 가변 너비. 기본 max-width 280px(잘림 시 ellipsis).
- * hover 시 max-width 520px로 확장되어 자연 너비대로 전체 텍스트 노출. */
+ * 기본은 짧은 라벨만(.pill-label) 표시, .pill-detail은 숨김.
+ * hover 시: a max-width 280→520 확장 + .pill-detail이 inline으로 노출
+ *   → label/detail 모두 a의 inline child라 baseline 동일 → 위치 이격 없음. */
 .pill-grid {
   margin: 0.6rem 0 1.4rem;
 }
@@ -292,6 +293,16 @@ article h3 {
   border-color: #98aede;
   box-shadow: 0 2px 10px rgba(31, 75, 168, 0.12);
   text-decoration: none !important;
+}
+
+// detail span: 기본은 숨김 → 라벨만 보임
+.pill-grid > ul > li > a .pill-detail {
+  display: none;
+}
+
+// hover 시 detail이 inline으로 노출 → a 자연 너비가 늘어나 max-width 520까지 확장
+.pill-grid > ul > li > a.has-detail:hover .pill-detail {
+  display: inline;
 }
 
 [saved-theme="dark"] .pill-grid > ul > li > a {
