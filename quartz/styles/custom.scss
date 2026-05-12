@@ -454,6 +454,9 @@ article h3 {
  * 안쪽 .popover-inner만 pointer-events: auto → 미리보기 콘텐츠는 스크롤 가능 유지 */
 .popover {
   pointer-events: none;
+  // 외곽 padding 축소 — link와 미리보기 콘텐츠 사이 시각 거리 줄임
+  // (popover.inline.ts의 mouseleave 400ms delay로 hover bridge 충분히 보장됨)
+  padding: 0.4rem;
   // 이전 popover 잔상 시간을 줄여 새 popover와 겹쳐 보이는 구간 최소화
   transition:
     opacity 0.15s ease,
