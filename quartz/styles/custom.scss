@@ -233,9 +233,10 @@ article h3 {
 }
 
 /* Pill 버튼 그리드 — index.md 카탈로그
- * 기본은 짧은 라벨만(.pill-label) 표시, .pill-detail은 숨김.
- * hover 시: a max-width 280→520 확장 + .pill-detail이 inline으로 노출
- *   → label/detail 모두 a의 inline child라 baseline 동일 → 위치 이격 없음. */
+ * 기본은 짧은 라벨만(.pill-label) 표시. .pill-detail은 숨김.
+ * hover 시: a max-width 280→520 확장 + .pill-detail이 inline으로 노출.
+ * 옆 li 밀어내기 방지: li.width를 JS로 고정 + a는 absolute로 li 안에 들어감.
+ *   → hover 시 a가 li 밖으로 떠올라 옆 li 위를 침범 (자리는 그대로). */
 .pill-grid {
   margin: 0.6rem 0 1.4rem;
 }
@@ -254,6 +255,8 @@ article h3 {
   padding: 0;
   list-style: none;
   min-height: 40px; // pill 자연 높이와 일치
+  // a가 absolute로 들어가는 컨테이너. width는 pill-grid.inline.ts가 JS로 고정
+  position: relative;
 }
 
 .pill-grid > ul > li::before,
@@ -281,14 +284,17 @@ article h3 {
   font-size: 0.86rem;
   font-weight: 600;
   line-height: 1.3;
-  position: relative; // detail layer의 absolute 기준 (z-index 명시 X → stacking context 안 만듦)
+  position: absolute; // li 안을 채움. hover max-width 확장 시 li 밖으로 떠올라 옆 li 침범
+  top: 0;
+  left: 0;
   transition: max-width 0.2s ease, background 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
 
 .pill-grid > ul > li > a:hover {
-  // hover 시 a 자체 max-width 확장 — 자연 너비대로 펼쳐져 잘린 텍스트 노출
-  // (별도 absolute layer 사용 안 함 → 위치 이격/baseline 시프트 없음)
+  // hover 시 a 자체 max-width 확장 → 자연 너비대로 펼쳐져 detail 노출
+  // li width는 JS가 고정해놓아 옆 li가 밀려나지 않음. a가 li 밖으로 떠올라 침범
   max-width: 520px;
+  z-index: 10;
   background: #e0eafa !important;
   border-color: #98aede;
   box-shadow: 0 2px 10px rgba(31, 75, 168, 0.12);
