@@ -5,7 +5,7 @@ import { classNames } from "../util/lang"
 const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzComponentProps) => {
   const baseDir = pathToRoot(fileData.slug!)
 
-  // 분류별 파일 수 — sources/, entities/, concepts/, comparisons/ prefix로 카운트
+  // 분류별 파일 수 — sources/, entities/, concepts/, comparisons/, presentations/ prefix로 카운트
   const countBy = (prefix: string) =>
     allFiles.filter((f) => {
       const s = f.slug ?? ""
@@ -18,6 +18,7 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
     entities: countBy("entities"),
     concepts: countBy("concepts"),
     comparisons: countBy("comparisons"),
+    presentations: countBy("presentations"),
   }
 
   // 링크 helper — pathToRoot 기준 상대 경로
@@ -59,6 +60,12 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
             <a href={link("comparisons/all")}>
               <span class="wiki-nav-label">비교 분석</span>
               <span class="wiki-nav-count">{counts.comparisons}</span>
+            </a>
+          </li>
+          <li>
+            <a href={link("presentations/all")}>
+              <span class="wiki-nav-label">프레젠테이션</span>
+              <span class="wiki-nav-count">{counts.presentations}</span>
             </a>
           </li>
         </ul>
