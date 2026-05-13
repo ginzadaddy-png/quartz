@@ -29,6 +29,16 @@ jobs:
         run: npm ci
       - name: Build Quartz
         run: npx quartz build -d content/wiki
+      - name: Copy presentations to public
+        run: |
+          if [ -d "content/presentations" ]; then
+            mkdir -p public/presentations
+            cp -r content/presentations/* public/presentations/
+            echo "Copied presentations to public/"
+            ls -la public/presentations/
+          else
+            echo "No content/presentations folder found, skipping"
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public

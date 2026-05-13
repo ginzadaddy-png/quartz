@@ -1,10 +1,7 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { pathToRoot } from "../util/path"
 import { classNames } from "../util/lang"
 
 const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzComponentProps) => {
-  const baseDir = pathToRoot(fileData.slug!)
-
   // 분류별 파일 수 — sources/, entities/, concepts/, comparisons/, presentations/ prefix로 카운트
   const countBy = (prefix: string) =>
     allFiles.filter((f) => {
@@ -21,7 +18,10 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
     presentations: countBy("presentations"),
   }
 
-  // 링크 helper — pathToRoot 기준 상대 경로
+  // 링크 helper — root-relative 절대 경로 (trailing slash 페이지에서 ../ resolve 실패 회피)
+  // pathToRoot이 file URL과 folder URL의 trailing slash 차이로 한 단계 부족하게 계산되는
+  // 버그가 있어 baseUrl `quartz/`에 명시적으로 의존하는 절대 경로 사용
+  const baseDir = "/quartz"
   const link = (path: string) => `${baseDir}/${path}`
 
   return (
@@ -29,7 +29,7 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
       <div class="wiki-nav-section">
         <h3 class="wiki-nav-heading">탐색</h3>
         <ul>
-          <li><a href={baseDir}>메인 페이지</a></li>
+          <li><a href={`${baseDir}/`}>메인 페이지</a></li>
           <li><a href={link("overview")}>위키 개요</a></li>
           <li><a href={link("log")}>활동 로그</a></li>
         </ul>
