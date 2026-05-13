@@ -29,6 +29,16 @@ jobs:
         run: npm ci
       - name: Build Quartz
         run: npx quartz build -d content/wiki
+      - name: Copy presentation HTML slides
+        run: |
+          # Quartz의 slugifyFilePath이 .html 확장자를 자동으로 제거(.md와 동일 처리)해서
+          # Assets emitter가 잘못된 path로 copy함. 별도 step에서 .html을 정확한 path에 그대로 copy.
+          if [ -d "content/wiki/presentations" ]; then
+            mkdir -p public/presentations
+            find content/wiki/presentations -maxdepth 1 -name "*.html" -exec cp {} public/presentations/ \;
+            echo "Copied .html slides to public/presentations/:"
+            ls -la public/presentations/*.html 2>/dev/null || echo "(no .html files)"
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public

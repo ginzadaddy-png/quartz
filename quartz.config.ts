@@ -17,7 +17,7 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "ginzadaddy-png.github.io/quartz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: ["private", "templates", ".obsidian", "**/*.html"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
