@@ -318,8 +318,10 @@ article h3 {
 }
 
 [saved-theme="dark"] .pill-grid > ul > li > a:hover {
-  background: rgba(120, 160, 220, 0.22) !important;
-  border-color: rgba(120, 160, 220, 0.5);
+  // 솔리드 불투명 배경 — hover 시 옆 pill 위로 떠오를 때 옆 pill 텍스트가 비치지 않도록
+  // 페이지 배경(#161618) 위에 잘 보이는 다크 블루 톤
+  background: #2a3a5c !important;
+  border-color: rgba(120, 160, 220, 0.6);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
