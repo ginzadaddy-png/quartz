@@ -24,8 +24,22 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
   const baseDir = "/quartz"
   const link = (path: string) => `${baseDir}/${path}`
 
+  // 챗봇 (HF Spaces, private — 본인 HF 로그인 필요). 외부 절대 URL + 새 탭
+  const chatUrl = "https://huggingface.co/spaces/ginzadaddy/ginza-wiki-chat"
+
   return (
     <nav class={classNames(displayClass, "wiki-nav")}>
+      <div class="wiki-nav-section">
+        <h3 class="wiki-nav-heading">AI 챗봇</h3>
+        <ul>
+          <li>
+            <a class="wiki-nav-chat" href={chatUrl} target="_blank" rel="noopener">
+              💬 위키에 질문하기 ↗
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <div class="wiki-nav-section">
         <h3 class="wiki-nav-heading">탐색</h3>
         <ul>
@@ -133,6 +147,19 @@ WikiNav.css = `
 .wiki-nav li > a:hover {
   background: var(--lightgray) !important;
   text-decoration: none !important;
+}
+
+.wiki-nav-chat {
+  font-weight: 600 !important;
+  background: rgba(31, 75, 168, 0.07) !important;
+}
+
+.wiki-nav-chat:hover {
+  background: rgba(31, 75, 168, 0.14) !important;
+}
+
+[saved-theme="dark"] .wiki-nav-chat {
+  background: rgba(136, 179, 232, 0.10) !important;
 }
 
 .wiki-nav-label {
