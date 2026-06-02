@@ -24,7 +24,7 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
   const baseDir = "/quartz"
   const link = (path: string) => `${baseDir}/${path}`
 
-  // 챗봇 (HF Spaces, private — 본인 HF 로그인 필요). 외부 절대 URL + 새 탭
+  // 챗봇 (HF Spaces 공개 + 앱 비밀번호 게이트 — 모든 브라우저 접근 가능, iOS Safari 포함). 외부 절대 URL + 새 탭
   const chatUrl = "https://huggingface.co/spaces/ginzadaddy/ginza-wiki-chat"
 
   return (
