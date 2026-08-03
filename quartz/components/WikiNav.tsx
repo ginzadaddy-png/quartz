@@ -2,7 +2,7 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 import { classNames } from "../util/lang"
 
 const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzComponentProps) => {
-  // 분류별 파일 수 — sources/, entities/, concepts/, comparisons/, reports/ prefix로 카운트
+  // 분류별 파일 수 — sources/, entities/, concepts/, comparisons/, reports/, decisions/ prefix로 카운트
   const countBy = (prefix: string) =>
     allFiles.filter((f) => {
       const s = f.slug ?? ""
@@ -16,6 +16,7 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
     concepts: countBy("concepts"),
     comparisons: countBy("comparisons"),
     reports: countBy("reports"),
+    decisions: countBy("decisions"),
   }
 
   // 링크 helper — root-relative 절대 경로 (trailing slash 페이지에서 ../ resolve 실패 회피)
@@ -81,6 +82,12 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
             <a href={link("reports/all")}>
               <span class="wiki-nav-label">보고서</span>
               <span class="wiki-nav-count">{counts.reports}</span>
+            </a>
+          </li>
+          <li>
+            <a href={link("decisions/all")}>
+              <span class="wiki-nav-label">결정·가설</span>
+              <span class="wiki-nav-count">{counts.decisions}</span>
             </a>
           </li>
         </ul>
