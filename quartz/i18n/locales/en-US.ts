@@ -47,7 +47,7 @@ export default {
     },
     transcludes: {
       transcludeOf: ({ targetSlug }) => `Transclude of ${targetSlug}`,
-      linkToOriginal: "← 위키 개요로 이동",
+      linkToOriginal: "← 위키 소개로 이동",
     },
     search: {
       title: "Search",

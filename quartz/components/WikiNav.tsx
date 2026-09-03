@@ -47,7 +47,7 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
         <h3 class="wiki-nav-heading">탐색</h3>
         <ul>
           <li><a href={`${baseDir}/`}>메인 페이지</a></li>
-          <li><a href={link("overview")}>소개</a></li>
+          <li><a href={link("overview")}>위키 소개</a></li>
           <li><a href={link("changelog")}>업데이트 소식</a></li>
         </ul>
       </div>
