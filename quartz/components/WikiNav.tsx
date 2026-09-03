@@ -25,11 +25,12 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
   const baseDir = "/quartz"
   const link = (path: string) => `${baseDir}/${path}`
 
-  // 챗봇 (HF Spaces 공개 + 앱 비밀번호 게이트 — 모든 브라우저 접근 가능, iOS Safari 포함). 외부 절대 URL + 새 탭
-  const chatUrl = "https://huggingface.co/spaces/ginzadaddy/ginza-wiki-chat"
+  // 챗봇 delist (2026-09-03): 사이트에서 내림 (테스트 개발, 실사용 계획 없음). 복구 시 이 const + 아래 "AI 챗봇" nav 블록 주석 해제
+  // const chatUrl = "https://huggingface.co/spaces/ginzadaddy/ginza-wiki-chat"
 
   return (
     <nav class={classNames(displayClass, "wiki-nav")}>
+      {/* 챗봇 delist (2026-09-03): 복구 시 이 블록 + 위 chatUrl const 주석 해제
       <div class="wiki-nav-section">
         <h3 class="wiki-nav-heading">AI 챗봇</h3>
         <ul>
@@ -40,14 +41,14 @@ const WikiNav: QuartzComponent = ({ fileData, allFiles, displayClass }: QuartzCo
           </li>
         </ul>
       </div>
+      */}
 
       <div class="wiki-nav-section">
         <h3 class="wiki-nav-heading">탐색</h3>
         <ul>
           <li><a href={`${baseDir}/`}>메인 페이지</a></li>
-          <li><a href={link("overview")}>위키 개요</a></li>
-          <li><a href={link("about")}>현황 공유</a></li>
-          <li><a href={link("log")}>활동 로그</a></li>
+          <li><a href={link("overview")}>소개</a></li>
+          <li><a href={link("changelog")}>업데이트 소식</a></li>
         </ul>
       </div>
 
